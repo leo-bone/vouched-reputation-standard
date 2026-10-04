@@ -181,5 +181,20 @@ class TestEd25519Optional(unittest.TestCase):
         self.assertTrue(res["valid"], res["issues"])
 
 
+class TestIssuerRegistry(unittest.TestCase):
+    """登记册里的快照公钥必须与参考演示密钥一致，否则会误导接入方。"""
+
+    def test_vouched_registry_matches_demo_key(self):
+        with open(os.path.join(ROOT, "issuers", "vouched.json")) as f:
+            reg = json.load(f)
+        with open(os.path.join(ROOT, "examples", "issuer.pub")) as f:
+            demo = json.load(f)
+        self.assertEqual(reg["pubkey"], demo["pubkey"],
+                         "issuers/vouched.json 的 pubkey 必须与 examples/issuer.pub（演示密钥）一致")
+        self.assertEqual(reg["alg"], "secp256k1")
+        self.assertEqual(reg["key_id"], "vouched-2026")
+        self.assertTrue(reg["well_known_url"].endswith("/.well-known/vprs-pubkey.json"))
+
+
 if __name__ == "__main__":
     unittest.main()
