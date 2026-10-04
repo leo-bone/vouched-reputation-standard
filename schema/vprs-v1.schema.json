@@ -1,0 +1,39 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://vouched.uichain.org/schemas/vprs-v1.schema.json",
+  "title": "VPRS Credential v1",
+  "description": "Vouched Portable Reputation Standard — 可携带声誉凭证",
+  "type": "object",
+  "required": ["schema", "agent_id", "issuer_id", "issued_at", "key_id", "alg", "settlements", "summary", "root_hash", "issuer_sig"],
+  "properties": {
+    "schema": { "type": "string", "const": "vprs/v1" },
+    "agent_id": { "type": "string" },
+    "issuer_id": { "type": "string" },
+    "issued_at": { "type": "integer" },
+    "key_id": { "type": "string" },
+    "alg": { "type": "string", "enum": ["secp256k1", "ed25519"] },
+    "settlements": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "task_id", "agent_id", "origin_agent_id", "issuer_id", "amount_usd", "category", "outcome", "rating", "ts", "proof_hash"],
+        "properties": {
+          "id": { "type": "string" },
+          "task_id": { "type": "string" },
+          "agent_id": { "type": "string" },
+          "origin_agent_id": { "type": "string" },
+          "issuer_id": { "type": "string" },
+          "amount_usd": { "type": "number", "minimum": 0 },
+          "category": { "type": "string" },
+          "outcome": { "type": "string", "enum": ["settled", "failed"] },
+          "rating": { "type": "number", "minimum": 0, "maximum": 5 },
+          "ts": { "type": "integer" },
+          "proof_hash": { "type": "string", "pattern": "^0x[0-9a-f]{40}$" }
+        }
+      }
+    },
+    "summary": { "type": "object" },
+    "root_hash": { "type": "string", "pattern": "^0x[0-9a-f]{48}$" },
+    "issuer_sig": { "type": "string", "pattern": "^0x[0-9a-f]+$" }
+  }
+}
