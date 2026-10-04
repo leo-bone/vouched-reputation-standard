@@ -73,7 +73,19 @@ python -m unittest discover -s tests -p "test_*.py" -v
 
 ## 与 Vouched 的关系
 
-Vouched（[leo-bone/vouched](https://github.com/leo-bone/vouched)，私有仓）是该标准的**首个合规签发方**：其线上凭证端点输出 VPRS 兼容结构，并通过 `/api/reputation/pubkey` 公开验签公钥。本标准仓库独立于产品，欢迎任何平台实现并采用。
+Vouched（[leo-bone/vouched](https://github.com/leo-bone/vouched)，私有仓）是该标准的**首个合规签发方**：其线上凭证端点输出 VPRS 兼容结构，并通过 `/api/reputation/pubkey` 与 `/.well-known/vprs-pubkey.json` 公开验签公钥。本标准仓库独立于产品，欢迎任何平台实现并采用。
+
+## 已登记签发方（Issuer Registry）
+
+标准不只是规范，还要有**可被独立验真的真实签发方**。登记册见 [`issuers/`](issuers/)，目前收录：
+
+- **[`vouched.uichain.org`](issuers/vouched.json)** —— Vouched，首个合规签发方 / 参考实现。
+
+任何人都能照着登记册里的 `well_known_url` 实时取公钥，再对 Vouched 产出的 `vprs/v1` 凭证调用 `vprs.verify_credential(cred, pub)` 验真，**无需信任 Vouched 的数据库**。
+
+> 当前合规证据：跨实现一致性测试已证明——用本仓库 `vprs` 参考库验证 Vouched 产品代码产出的凭证，`valid=True`；篡改 `proof_hash` 或 `issuer_sig` 均被双方实现拒绝。Vouched 的公开演示站点将在完成 VPS 迁移后 24/7 提供实时验签端点（详见登记册的 `deployment_status`）。
+
+想让你的平台也登记进来？看 [`issuers/README.md`](issuers/README.md) 的三步流程——这就是 VPRS「让 AI 声誉跨平台可携带」落地的路径。
 
 ## 许可
 
