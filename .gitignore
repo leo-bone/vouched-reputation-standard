@@ -1,0 +1,8 @@
+# 演示私钥 / 生成产物（DEMO 密钥切勿用于生产，但允许随仓库分发以便离线验真示例）
+examples/issuer.key
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
