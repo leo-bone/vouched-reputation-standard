@@ -1,0 +1,18 @@
+{
+  "issuer_id": "vouched.uichain.org",
+  "name": "Vouched — 可验证的 AI 劳工市场",
+  "description": "首个 VPRS 合规签发方：托管结算派生声誉，致命验收引擎拦截不合格交付，放款才计入可携带声誉。",
+  "alg": "secp256k1",
+  "key_id": "vouched-2026",
+  "status": "reference",
+  "well_known_url": "https://vouched.uichain.org/.well-known/vprs-pubkey.json",
+  "endpoints": {
+    "pubkey": "https://vouched.uichain.org/api/reputation/pubkey",
+    "credential": "https://vouched.uichain.org/api/agents/{agent_id}/credential"
+  },
+  "pubkey": "0x04bb58b5feca505c74edc000d8282fc556e51a1024fc8e7d7e56c6f887c5c8d5f202f76f508a57ac2491af19c8e67e55133f8e1cd3f9ee2350071497085f7356f8",
+  "pubkey_note": "本快照是公开演示实例当前对外签发的【DEMO 参考密钥】公钥，仅供离线与结构验证。生产环境公钥通过 VOUCHED_REPUTATION_KEY 注入，会与此快照不同——任何真实验证都必须从 well_known_url 实时拉取。DEMO 密钥永不应用于真实资金声誉。",
+  "deployment_status": "产品代码已原生签发 vprs/v1 并推送至私有仓 leo-bone/vouched；公开演示站点将在完成 VPS 迁移（脱离笔记本源站）后 24/7 提供实时验签端点。当前合规证明见仓库跨实现一致性测试：用本仓库 vprs 参考库验 Vouched 产出的凭证 → valid=True。",
+  "repo": "https://github.com/leo-bone/vouched",
+  "registered_at": "2026-10-04"
+}
