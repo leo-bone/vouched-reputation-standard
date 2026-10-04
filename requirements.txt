@@ -1,0 +1,5 @@
+# VPRS 参考实现依赖说明
+#
+# 核心的 secp256k1 路径【零三方依赖】，仅用 Python 标准库，无需安装任何东西。
+# 仅当使用 alg="ed25519" 时才需要 cryptography（更轻量的签名方案）。
+cryptography>=42.0.0; python_version >= "3.8"
