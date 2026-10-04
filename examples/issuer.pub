@@ -1,0 +1,7 @@
+{
+  "issuer_id": "vouched.uichain.org",
+  "key_id": "vouched-2026",
+  "alg": "secp256k1",
+  "pubkey": "0x04bb58b5feca505c74edc000d8282fc556e51a1024fc8e7d7e56c6f887c5c8d5f202f76f508a57ac2491af19c8e67e55133f8e1cd3f9ee2350071497085f7356f8",
+  "address": "0xf472ee05fef226489e052614ff7727d90b68c761"
+}
